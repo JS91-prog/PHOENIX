@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phoenix - Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts & AOS Animation -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Styling -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      background-image: url('10.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.1);
+      z-index: 0;
+    }
+
+    /* Hero Section */
+    #home {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content img {
+      width: 256px;
+      height: 256px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .hero-content img:hover {
+      transform: scale(1.05);
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-content p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Corner Logo Navigation */
+    .logo-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo-wrapper.expanded {
+      width: 360px;
+      height: 96px;
+      border-radius: 48px;
+      padding: 0 20px;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .logo-circle {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .logo-wrapper.expanded .nav-links {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 8px 14px;
+      border-radius: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      font-size: 0.9em;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 3em; }
+      .hero-content p { font-size: 1.1em; }
+      .hero-content img { width: 200px; height: 200px; }
+
+      .logo-wrapper {
+        width: 72px;
+        height: 72px;
+      }
+
+      .logo-wrapper.expanded {
+        width: 280px;
+        height: 72px;
+        border-radius: 36px;
+      }
+
+      .logo-circle {
+        width: 64px;
+        height: 64px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2.5em; }
+      .hero-content p { font-size: 1em; }
+      .hero-content img { width: 150px; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corner Logo Navigation -->
+  <div class="logo-wrapper" id="logoToggle">
+    <div class="logo-circle">
+      <img src="phoenix 5.png" alt="Phoenix Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="home.html">Home</a>
+      <a href="social.html">Gallery</a>
+    </div>
+  </div>
+
+  <!-- Welcome Section -->
+  <section id="home">
+    <div class="hero-content">
+      <img src="phoenix 5.png" alt="Phoenix Logo" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200" />
+      <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Welcome to Phoenix</h1>
+      <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+        Embrace the spirit of renewal and endless possibilities. Discover our journey and vision.
+      </p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+
+    const logoWrapper = document.getElementById('logoToggle');
+    logoWrapper.addEventListener('click', () => {
+      logoWrapper.classList.toggle('expanded');
+    });
+  </script>
+</body>
+</html>

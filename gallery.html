@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phoenix - Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      background-image: url('10.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.1);
+      z-index: 0;
+    }
+
+    .logo-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo-wrapper.expanded {
+      width: 360px;
+      height: 96px;
+      border-radius: 48px;
+      padding: 0 20px;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .logo-circle {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .logo-wrapper.expanded .nav-links {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 8px 14px;
+      border-radius: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .gallery-container {
+      padding: 100px 30px 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-container h1 {
+      text-align: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      font-size: 0.9em;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container h1 { font-size: 2.5em; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-container h1 { font-size: 2em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-wrapper" id="logoToggle">
+    <div class="logo-circle">
+      <img src="phoenix 5.png" alt="Phoenix Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="home.html">Home</a>
+      <a href="social.html">Gallery</a>
+    </div>
+  </div>
+
+  <div class="gallery-container" data-aos="fade-up">
+    <h1>Gallery</h1>
+    <div class="gallery-grid">
+      <img src="1.jpg" alt="Gallery Image 1" />
+      <img src="2.jpg" alt="Gallery Image 2" />
+      <img src="3.jpg" alt="Gallery Image 3" />
+      <img src="4.jpg" alt="Gallery Image 4" />
+      <img src="5.jpg" alt="Gallery Image 5" />
+      <img src="6.jpg" alt="Gallery Image 6" />
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+
+    const logoWrapper = document.getElementById('logoToggle');
+    logoWrapper.addEventListener('click', () => {
+      logoWrapper.classList.toggle('expanded');
+    });
+  </script>
+</body>
+</html>

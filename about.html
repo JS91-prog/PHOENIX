@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us - Phoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: url('10.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+
+    .logo-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo-wrapper.expanded {
+      width: 360px;
+      height: 96px;
+      border-radius: 48px;
+      padding: 0 20px;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .logo-circle {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .logo-wrapper.expanded .nav-links {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 8px 14px;
+      border-radius: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .about-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: auto;
+      top: 25%;
+      transform: translateY(-50%);
+      padding: 40px;
+      background-color: rgba(255,255,255,0.08);
+      border-radius: 32px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #f0f0f0;
+    }
+
+    .highlight {
+      color: #ffd700;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .logo-wrapper {
+        width: 72px;
+        height: 72px;
+      }
+
+      .logo-wrapper.expanded {
+        width: 280px;
+        height: 72px;
+        border-radius: 36px;
+      }
+
+      .logo-circle {
+        width: 64px;
+        height: 64px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      .about-container {
+        padding: 24px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Click-to-Expand Logo Wrapper -->
+  <div class="logo-wrapper" id="logoToggle">
+    <div class="logo-circle">
+      <img src="phoenix 5.png" alt="Phoenix Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="home.html">Home</a>
+      <a href="social.html">Social</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="about-container">
+    <h1>About Us</h1>
+    <p>
+      At <span class="highlight">Phoenix</span>, we're driven by purpose and innovation. Born from a desire to rise above the ordinary, we are a collective of visionaries, coders, dreamers, and creators who believe in shaping experiences that are both beautiful and meaningful.
+    </p>
+    <p>
+      Our mission is to empower individuals and communities by designing tools that feel intuitive and elevate everyday interactions. We blend design, technology, and storytelling into seamless digital journeys—because we believe design is not just how something looks, but how it works.
+    </p>
+    <p>
+      Thank you for being a part of our journey. Together, let’s rise.
+    </p>
+  </div>
+
+  <script>
+    const logoWrapper = document.getElementById('logoToggle');
+    logoWrapper.addEventListener('click', () => {
+      logoWrapper.classList.toggle('expanded');
+    });
+  </script>
+</body>
+</html>

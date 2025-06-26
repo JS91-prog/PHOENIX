@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Phoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Reset & Body Styling */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scroll on initial load due to background scaling */
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif; /* Modern, readable font */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("10.jpg"); /* Ensure this path is correct */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* Makes background static on scroll, if content were to scroll */
+      transition: background-image 0.5s ease-in-out; /* Smooth transition for background changes if any */
+    }
+
+    /* Overlay for better readability */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.1); /* Subtle dark overlay */
+      z-index: 1;
+    }
+
+    /* Login Container (now just holding the logo) */
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.0); /* Slightly less transparent white for better contrast */
+      padding: 50px; /* Adjust padding as content is less */
+      border-radius: 256px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Phoenix Logo Styling */
+    .login-container img {
+            width: 256px;
+            height: 256px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 24px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 256px; /* Make the logo round */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease-in-out;
+    }
+
+    .login-container img:hover {
+      transform: scale(1.1);
+    }
+
+    /* --- Animation Overlay Styles --- */
+    #zoom-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7); /* Translucent white */
+      backdrop-filter: blur(2px); /* Add blur to the overlay itself for continued frosted effect */
+      -webkit-backdrop-filter: blur(2px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0; /* Hidden by default */
+      visibility: hidden; /* Ensures it doesn't block clicks */
+      z-index: 1000; /* On top of everything */
+      transition: opacity 1s ease-out, visibility 1s ease-out; /* Smooth fade in/out */
+    }
+
+    #zoom-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #zoomingLogo {
+      width: 256px; /* Starting size, matches original logo */
+      height: 256px;
+      object-fit: contain; /* Ensures logo fits without cropping */
+      transform: scale(0.1);
+      transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out; /* Smooth zoom transition */
+    }
+
+    #zoom-overlay.active #zoomingLogo {
+      transform: scale(50); /* Adjust this value for how much it zooms (e.g., 50 for very large) */
+      opacity: 1; /* Fade out as it zooms large */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 40px; /* Adjust padding */
+        margin: 20px;
+      }
+
+      .login-container img {
+        width: 200px;
+        height: 200px;
+      }
+
+      #zoomingLogo {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 32px; /* Adjust padding */
+        border-radius: 16px;
+      }
+
+      .login-container img {
+        width: 150px;
+        height: 150px;
+      }
+
+      #zoomingLogo {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+
+  <script>
+    // Function to handle the animation and redirect
+    function animateAndRedirect() {
+      const loginContainer = document.querySelector('.login-container');
+      const zoomOverlay = document.getElementById('zoom-overlay');
+      const zoomingLogo = document.getElementById('zoomingLogo');
+      const clickedLogo = document.getElementById('phoenixLogo'); // The original logo
+
+      // Hide the main content - Fade it out
+      loginContainer.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+      loginContainer.style.opacity = '0';
+      loginContainer.style.transform = 'scale(0.9)'; // Slightly shrink as it fades
+      loginContainer.style.pointerEvents = 'none'; // Disable clicks during transition
+
+      // Show the overlay
+      zoomOverlay.classList.add('active');
+
+      // Get the position of the original logo to start the zoom from there
+      const rect = clickedLogo.getBoundingClientRect();
+      zoomingLogo.style.position = 'fixed'; // Use fixed position for accurate viewport placement
+      // FIX: Corrected typo from zooningLogo to zoomingLogo
+      zoomingLogo.style.left = `${rect.left}px`;
+      zoomingLogo.style.top = `${rect.top}px`;
+      zoomingLogo.style.width = `${rect.width}px`;
+      zoomingLogo.style.height = `${rect.height}px`;
+
+      // A small delay to ensure the initial position is set before animation starts
+      setTimeout(() => {
+        // Apply the zoom and fade
+        zoomingLogo.style.transition = 'transform 1.5s ease-in-out, opacity 1.5s ease-in-out, left 0.5s ease-out, top 0.5s ease-out, width 0.5s ease-out, height 0.5s ease-out';
+        zoomingLogo.style.left = '50%';
+        zoomingLogo.style.top = '50%';
+        zoomingLogo.style.transform = 'translate(-50%, -50%) scale(20)'; /* Zoom and center */
+        zoomingLogo.style.opacity = '0';
+        // Note: setting width/height to 100vw/vh here might cause a jump
+        // Let the transform handle the scaling, object-fit will manage aspect ratio
+      }, 50);
+
+      // Redirect after the animation completes
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 1500); // This should match the CSS transition duration (1.5s)
+    }
+
+    // Assign event listener for the logo click
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById('phoenixLogo').addEventListener('click', animateAndRedirect);
+    });
+  </script>
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="phoenix 5.png" alt="Phoenix Logo" id="phoenixLogo">
+  </div>
+
+  <div id="zoom-overlay">
+    <img src="phoenix 5.png" alt="Phoenix Logo Zooming" id="zoomingLogo">
+  </div>
+
+</body>
+</html>
