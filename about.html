@@ -82,7 +82,7 @@
     section {
       min-height: 100vh;
       display: flex;
-      flex-direction: column; /* stack content vertically */
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px;
@@ -95,18 +95,22 @@
       text-align: center;
       animation: fadeInUp 1s ease-out forwards;
     }
+
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(50px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: 48px; margin-bottom: 20px;
     }
+
     p {
       font-size: 18px; line-height: 1.6; color: #f0f0f0;
       max-width: 900px;
     }
+
     .highlight {
       color: #ffd700; font-weight: 500;
     }
@@ -130,9 +134,9 @@
       <img src="phoenix 5.png" alt="Phoenix Logo" />
     </div>
     <div class="nav-links">
-      <a href="#home">Home</a>
+      <a href="home.html">Home</a>
+      <a href="gallery.html">Gallery</a>
       <a href="#about">About</a>
-      <a href="#social">Social</a>
     </div>
   </div>
 
