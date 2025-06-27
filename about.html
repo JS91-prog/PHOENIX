@@ -6,29 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
   <style>
-    /* 1) Allow scrolling, smooth in‐page links */
     html {
       scroll-behavior: smooth;
     }
     html, body {
       margin: 0; padding: 0;
-      height: auto;            /* let body grow */
       font-family: 'Roboto', sans-serif;
       background: url('10.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
-      /* overflow: hidden; */   /* ← removed */
     }
 
     body::before {
       content: '';
-      position: fixed;         /* cover viewport */
+      position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.15);
       z-index: 1;
     }
 
-    /* 2) Click‐to‐expand logo & nav */
     .logo-wrapper {
       position: fixed;
       top: 20px; left: 20px;
@@ -79,13 +75,14 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* 3) Sections to scroll through */
     main {
       position: relative; z-index: 2;
     }
+
     section {
-      min-height: 100vh;    /* make each full‐screen */
+      min-height: 100vh;
       display: flex;
+      flex-direction: column; /* stack content vertically */
       align-items: center;
       justify-content: center;
       padding: 40px;
@@ -108,12 +105,12 @@
     }
     p {
       font-size: 18px; line-height: 1.6; color: #f0f0f0;
+      max-width: 900px;
     }
     .highlight {
       color: #ffd700; font-weight: 500;
     }
 
-    /* 4) Mobile tweaks */
     @media (max-width: 768px) {
       .logo-wrapper { width: 72px; height: 72px; }
       .logo-wrapper.expanded {
@@ -128,7 +125,6 @@
 </head>
 <body>
 
-  <!-- Click‐to‐Expand Logo + Nav -->
   <div class="logo-wrapper" id="logoToggle">
     <div class="logo-circle">
       <img src="phoenix 5.png" alt="Phoenix Logo" />
@@ -143,7 +139,7 @@
   <main>
     <section id="about">
       <h1>About Us</h1>
-      <p>At Phoenix, we're driven by purpose and innovation. Born from a desire to rise above the ordinary, we are a collective of visionaries, coders, dreamers, and creators who believe in shaping experiences that are both beautiful and meaningful.Our mission is to empower individuals and communities by designing tools that feel intuitive and elevate everyday interactions. We blend design, technology, and storytelling into seamless digital journeys—because we believe design is not just how something looks, but how it works.Thank you for being a part of our journey. Together, let's rise.</p>
+      <p>At Phoenix, we're driven by purpose and innovation. Born from a desire to rise above the ordinary, we are a collective of visionaries, coders, dreamers, and creators who believe in shaping experiences that are both beautiful and meaningful.<br><br>Our mission is to empower individuals and communities by designing tools that feel intuitive and elevate everyday interactions. We blend design, technology, and storytelling into seamless digital journeys—because we believe design is not just how something looks, but how it works.<br><br>Thank you for being a part of our journey. Together, let's rise.</p>
     </section>
   </main>
 
