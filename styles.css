@@ -1,3 +1,5 @@
+/* styles.css */
+
 /* Base styles */
 body {
   font-family: 'Segoe UI', sans-serif;
@@ -26,20 +28,26 @@ h2 {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-/* Optional enhancements */
-a {
-  color: #007acc;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-.container {
+/* Liquid Glass Container */
+.glass-container {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  margin: 2rem auto;
   max-width: 800px;
-  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Responsive and subtle hover effect */
+.glass-container:hover {
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.15);
 }
